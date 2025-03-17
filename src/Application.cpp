@@ -5,6 +5,13 @@
 #include<fstream>
 #include<string>
 #include<sstream>
+#include"GlHelper.h"
+#include<Logger.h>
+
+#define ASSERT(x) if(!(x)) __builtin_debugtrap();
+#define GlCall(x) GlClearError();\
+    x;\
+    ASSERT(GlLogCall(#x,__FILE__,__LINE__))
 
 
 struct ShaderProgramSource {
@@ -34,10 +41,10 @@ static ShaderProgramSource ParseShader(const std::string &filePath) {
         if (line.find("#shader") != std::string::npos) {
             if (line.find("vertex") != std::string::npos) {
                 shaderType = ShaderType::VERTEX;
-                std::cout << "[INFO] Found Vertex Shader" << std::endl;
+                Log("[INFO] Found Vertex Shader");
             } else if (line.find("fragment") != std::string::npos) {
                 shaderType = ShaderType::FRAGMENT;
-                std::cout << "[INFO] Found Fragment Shader" << std::endl;
+                Log("[INFO] Found Fragment Shader");
             }
         } else if (shaderType != ShaderType::NONE) {
             ss[(int) shaderType] << line << '\n';
@@ -62,9 +69,8 @@ static unsigned int CompiledShader(unsigned int type, const std::string &source)
         std::vector<char> message(length);
         glGetShaderInfoLog(id, length, &length, message.data());
 
-        std::cout << "Failed to compile "
-                << (type == GL_VERTEX_SHADER ? "vertex shader" : "fragment shader")
-                << ":\n" << message.data() << std::endl;
+        Log("Failed to compile ", type == GL_VERTEX_SHADER ? "vertex shader" : "fragment shader", ":\n",
+            message.data());
 
         glDeleteShader(id);
         return 0;
@@ -130,9 +136,8 @@ int main(void) {
     glfwMakeContextCurrent(window);
 
     if (glewInit() != GLEW_OK)
-        std::cout << "Something wrong with glew initialization" << std::endl;
+        Log("Something wrong with glew initialization");
 
-    std::cout << glGetString(GL_VERSION) << std::endl;
 
     float positions[] = {
         -0.5f, -0.5f, // 0
@@ -159,10 +164,10 @@ int main(void) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices,GL_STATIC_DRAW);
 
     ShaderProgramSource source = ParseShader("../res/shaders/Basic.shader");
-    std::cout << "Vertex" << std::endl;
-    std::cout << source.VertexSource << std::endl;
-    std::cout << "Fragment" << std::endl;
-    std::cout << source.FragmentSource << std::endl;
+    Log("Vertex");
+    Log(source.VertexSource);
+    Log("Fragment");
+    Log(source.FragmentSource);
 
     unsigned int shader = CreateShader(source.VertexSource, source.FragmentSource);
     glUseProgram(shader);
@@ -172,7 +177,7 @@ int main(void) {
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glDrawElements(GL_TRIANGLES, 6,GL_UNSIGNED_INT, nullptr);
+        GlCall(glDrawElements(GL_TRIANGLES, 6,GL_INT, nullptr));
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

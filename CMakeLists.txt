@@ -6,9 +6,13 @@ set(CMAKE_CXX_STANDARD 20)
 # Include GLFW and GLEW headers
 include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/include)
 include_directories(/opt/homebrew/include)
+include_directories(${CMAKE_SOURCE_DIR}/res/helper)
 
 # Create executable
-add_executable(openGl src/Application.cpp)
+add_executable(openGl
+        src/Application.cpp
+        res/helper/GlHelper.cpp
+)
 
 # Link GLFW and GLEW
 target_link_libraries(openGl
