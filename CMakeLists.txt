@@ -11,7 +11,9 @@ include_directories(${CMAKE_SOURCE_DIR}/res/helper)
 # Create executable
 add_executable(openGl
         src/Application.cpp
-        res/helper/GlHelper.cpp
+        src/VertexBuffer.cpp
+        src/IndexBuffer.cpp
+        src/Renderer.cpp
 )
 
 # Link GLFW and GLEW

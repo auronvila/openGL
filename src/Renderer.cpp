@@ -1,10 +1,9 @@
 //
-// Created by Auron Vila on 17.03.2025.
+// Created by Auron Vila on 1.04.2025.
 //
-#include<iostream>
-#include <GL/glew.h>
-#include<Logger.h>
 
+#include "Renderer.h"
+#include "Logger.h"
 
 void GlClearError() {
     while (glGetError() != GL_NO_ERROR);
