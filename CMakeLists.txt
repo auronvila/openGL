@@ -8,12 +8,10 @@ include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/include)
 include_directories(/opt/homebrew/include)
 include_directories(${CMAKE_SOURCE_DIR}/res/helper)
 
+
 # Create executable
 add_executable(openGl
         src/Application.cpp
-        src/VertexBuffer.cpp
-        src/IndexBuffer.cpp
-        src/Renderer.cpp
 )
 
 # Link GLFW and GLEW
