@@ -12,7 +12,9 @@
     #shader fragment
     #version 120
 
+    uniform vec4 u_Color;
+
     void main()
     {
-        gl_FragColor = vec4(0.2, 2.0, 0.0, 1.0);
+        gl_FragColor = u_Color;
     }
