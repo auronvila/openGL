@@ -21,6 +21,12 @@ add_executable(openGl
 
         src/IndexBuffer.h
         src/IndexBuffer.cpp
+
+        src/VertexArray.cpp
+        src/VertexArray.h
+
+        src/VertexBufferLayout.h
+        src/VertexBufferLayout.cpp
 )
 
 # Link GLFW and GLEW
