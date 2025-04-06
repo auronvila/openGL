@@ -27,6 +27,9 @@ add_executable(openGl
 
         src/VertexBufferLayout.h
         src/VertexBufferLayout.cpp
+
+        src/Shader.cpp
+        src/Shader.h
 )
 
 # Link GLFW and GLEW
