@@ -30,6 +30,12 @@ add_executable(openGl
 
         src/Shader.cpp
         src/Shader.h
+
+        src/Texture.cpp
+        src/Texture.h
+
+        src/vendor/stb_image/stb_image.h
+        src/vendor/stb_image/stb_image.cpp
 )
 
 # Link GLFW and GLEW
