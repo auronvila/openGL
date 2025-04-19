@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 # Include GLFW and GLEW headers
 include_directories(${CMAKE_SOURCE_DIR}/Dependencies/GLFW/include)
+include_directories(${CMAKE_SOURCE_DIR}/src/vendor/stb_image)
+include_directories(${CMAKE_SOURCE_DIR}/src/vendor/glm)
 include_directories(/opt/homebrew/include)
 include_directories(${CMAKE_SOURCE_DIR}/res/helper)
 

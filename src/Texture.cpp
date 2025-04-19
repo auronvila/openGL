@@ -3,7 +3,7 @@
 //
 
 #include "Texture.h"
-#include"vendor/stb_image/stb_image.h"
+#include"stb_image.h"
 
 Texture::Texture(const std::string &filePath): m_RendererId(0),
                                                m_FilePath(filePath),
@@ -36,7 +36,6 @@ Texture::~Texture() {
 void Texture::Bind(unsigned int slot) const {
     GLCall(glActiveTexture(GL_TEXTURE0 + slot))
     GLCall(glBindTexture(GL_TEXTURE_2D,m_RendererId));
-
 }
 
 void Texture::Unbind() const {
